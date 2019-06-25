@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/aframe-update-min.js"></script>
+        <script src="js/framerate-counter-min.js"></script>
+        <script src="js/aframe-events-components-min.js"></script>
+        <script src="js/aframe-crawling-cursor-min.js"></script>
+        <script src="js/aframe-look-at-min.js"></script>
+        <script src="js/aframe-curve-component-min.js"></script>
+        <!-- <script src="js/aframe-ui-modal-min.js"></script> -->
+        <!-- <script src="js/interactions.js"></script> -->
+        <script src="js/circuit-interaction.js"></script>
+        <title>Nubian VR workspace</title>
+    </head>
+    <body>
+        
+        <a-scene stats workspaceready light="defaultLightsEnabled: false">
+            
+            <!-- Lighting goes here ... -->
+            
+            <a-camera id="main-camera" camera="zoom: 1" position="-9 7 -9" >
+                <a-cursor fuse="false" material="color: red;">
+                
+                </a-cursor>
+                <!-- <a-cursor geometry="primitive: ring; radius-outer: 0.2; radius-inner: 0.06" material="color: lightblue" opacity="1"></a-cursor> -->
+            </a-camera>
+            
+
+            <!-- Default lighting injected by A-Frame. -->
+            <a-entity light="type: spot; color: #fdda11; penumbra: 0.3" position="14.61 1.67 -22.21" rotation="-91.95 0 0"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="30.885 14.515 15.110"></a-entity>
+            <a-entity light="type: point; color: #FFF; intensity: 0.6" position="-29.896 32.676 15.964"></a-entity>
+            <a-entity light="type: ambient; color: #FFF; intensity: 0.5" position="0 0 0"></a-entity>
+
+            <a-assets>
+              
+              <a-asset-item id="table" src="res/table/my_table.gltf"></a-asset-item>
+              <a-asset-item id="lamp" src="res/lamp/model.gltf"></a-asset-item>
+              <a-asset-item id="cuberoom" src="res/cuberoom/CubeRoom.gltf"></a-asset-item>
+              <a-asset-item id="whiteboard" src="res/whiteboard/Whiteboard.gltf"></a-asset-item>
+              <a-asset-item id="exp_light" src="res/table_lamp/Light_bulb_01.gltf"></a-asset-item>
+              <a-asset-item id="switch" src="res/switch/Light_Switch.gltf"></a-asset-item>
+              <a-asset-item id="battery" src="res/battery/model.gltf"></a-asset-item>
+              <a-asset-item id="battery2" src="res/power/Battery.gltf"></a-asset-item>
+              <img id="blueprint" src="res/blueprint/blueprint.jpg"></img>
+
+            </a-assets>
+
+            <!-- My Blueprint table ... -->
+            <a-plane id="blueprint-workspace" workspace position="-8.017 -0.722 -14.821" scale="17.737 10 8" rotation="-84.06 0 0" material="src: #blueprint"></a-plane>
+            <!--  -->
+
+            <a-entity gltf-model="#table" position="0 -9 -16" rotation="0 -90 0" scale="1.46 1.00 1.75"></a-entity>
+            <a-entity gltf-model="#lamp" rotation="0 45 0" position="16.91 -11.90 -20.38" scale="8 8 8"></a-entity>
+            <a-entity gltf-model="#cuberoom" scale="30.715 18.067 18.067" position="-3.002 -7.501 -8.153"></a-entity>
+            <a-entity gltf-model="#whiteboard" position="3.53 17.89 -48.13" scale="50.406 49.140 49.140"></a-entity>
+            
+            <a-entity electrical_component="component_name: battery" position="-13.254 1 -20.591">
+                
+                <a-entity id="battery-model" gltf-model="#battery2" rotation="0 0 0" scale="35 33 35">
+                    <!-- <a-entity line="start: 0, 0, 0; end: 2 0 -5; color: red" line__2="start: 0 0 0; end: 0 4 -3; color: green"></a-entity> -->
+                </a-entity>
+
+                <a-entity terminal="value: 'positive'" position="0.039 -0.068 -0.857">
+                    <a-text id='positive' width="12" height="12" align="center" material="color: #333;" visible="false" look-at='[camera]' 
+                            geometry="primitive: plane;
+                                    width: 0.7;
+                                    height: 0.7;"
+                            value="+">
+                    </a-text>
+                </a-entity>
+                
+                <a-entity  terminal="value: 'negative'" position="0.055 0.005 0.887">
+                        <a-text id='negative' width="12" height="12" align="center" material="color: #333;" visible="false" look-at='[camera]' 
+                            geometry="primitive: plane;
+                                    width: 0.7;
+                                    height: 0.7;"
+                            value="-">
+                        </a-text>
+                </a-entity>
+                
+                <a-text id="text-panel" width="12" height="12" align="center" material="color: #F22;" visible="false" look-at='[camera]' 
+                geometry="primitive: plane;
+                          width: 1.8;
+                          height: 1;"
+                value="battery">
+
+                </a-text>
+
+                <a-text id="remove-component" width="12" height="12" align="center" material="color: #333;" visible="false" look-at='[camera]' 
+                geometry="primitive: plane;
+                          width: 1.8;
+                          height: 1;"
+                value="battery">
+
+                </a-text>
+
+                <!-- <a-text id="add-remove-wire" width="12" height="12" align="center" material="color: #333;" visible="false" look-at='[camera]' 
+                geometry="primitive: plane;
+                          width: 1.8;
+                          height: 1;"
+                value="battery"> 
+
+                </a-text>-->
+                
+
+
+
+                <!-- <a-curve id="track1">
+                    <a-curve-point position="-0.515 2.561 -0.921"></a-curve-point>
+                    <a-curve-point position="1 1 -3"></a-curve-point>
+                    <a-curve-point position="1 0.5 -3"></a-curve-point>
+                    <a-curve-point position="-0.309 0.927  -0.773"></a-curve-point>
+                </a-curve>
+
+                <a-draw-curve curveref="#track1" material="shader: line; color: red;"></a-draw-curve> -->
+
+            </a-entity>
+
+            <!-- <a-entity electrical_component="component_name: switch" position="-11.649 -1.024 -8.934" visible="false">
+                <a-entity switch gltf-model="#switch" rotation="-89.541 -180 -179.501" scale="10.534 10.534 10.534" ></a-entity>
+
+                <a-entity terminal="value: 'positive'">
+                </a-entity>
+                <a-entity terminal="value: 'negative'">
+                </a-entity>
+
+            </a-entity>
+
+            <a-entity electrical_component="component_name: bulb" position="-9.7 -1.060 -7.934" visible="false">
+                <a-entity switch gltf-model="#exp_light" rotation="0 0 0" scale="0.15 0.15 0.15" ></a-entity>
+
+                <a-entity terminal="positive">
+                </a-entity>
+                <a-entity terminal="negative">
+                </a-entity>
+            </a-entity>
+             -->
+            
+
+
+            <a-sky color="black"></a-sky>
+
+          </a-scene>
+    </body>
+
+</html>

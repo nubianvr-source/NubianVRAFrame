@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nubian Vr</title>
+    <script src="js/aframe-master.min.js"></script>
+
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/aframe-template-component.min.js"></script>
+    <script src="js/aframe-layout-component.min.js"></script>
+    <script src="js/aframe-event-set-component.min.js"></script>
+    <script src="js/aframe-draw-component.min.js"></script>
+    <script src="js/aframe-textwrap-component.min.js"></script>
+
+    
+    <script src="js/camera-position.js"></script>
+    <script src="js/link-controls.js"></script>
+
+
+</head>
+
+<body>
+
+ <a-scene fog="type: linear; near:12; far:20; color: #0c192a;" raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse; fuse: false" camera-position>
+    <a-assets>
+
+        <!-- Images. -->
+        <img id="city" src="img/image/Journey to Mars.jpeg">
+        <img id="city-thumb" src="img/image/Journey to Mars.jpeg">
+
+        <img id="wolf" src="img/image/Lifecycle of Stars.jpg">
+        <img id="cubes-thumb" src="img/image/Lifecycle of Stars.jpg">
+
+        <img id="sechelt" src="img/image/Space Weather.jpeg">
+        <img id="sechelt-thumb" src="img/image/Space Weather.jpeg">
+
+       
+
+        <!-- To add a new thumbnail board ff the steps below -->
+
+
+        <!-- icons -->
+        <img id="next" src="img/ico/baseline_navigate_next_white_48dp.png">
+        <img id="prev" src="img/ico/baseline_navigate_before_white_48dp.png">
+
+        <img src="assets/white_grid_thin.png" id="grid" crossorigin="anonymous">
+
+
+        <script id="plane" type="text/html">
+
+            <a-entity class="link" geometry="primitive: plane; height: .5; width: .5" material="shader: flat; src: ${thumb}" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1" event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1" set-image="on: click; target: #image-360; src: ${src}; name: ${name};">                
+            </a-entity>
+
+        </script>
+    </a-assets>
+
+    
+    <!-- full background board -->
+    <a-plane color="black" rotation="0 0 0" width="7" height="4.5" position="0 2.5 -2.52"></a-plane>
+
+    <!-- Pass image sources to the template. -->
+    <a-entity id="links" layout="layout: line; margin: 1" position="-1 0.7 -2.5">
+        <a-entity template="src: #plane" data-src="#city" data-thumb="#city-thumb" data-name="Journey to Mars"> </a-entity>
+        <a-entity template="src: #plane" data-src="#wolf" data-thumb="#cubes-thumb" data-name="Lifecycle of Stars"> </a-entity>
+        <a-entity template="src: #plane" data-src="#sechelt" data-thumb="#sechelt-thumb" data-name="Space Weather"></a-entity>
+    </a-entity>
+
+     <a-plane color="#454955" rotation="0 0 0" width="7" height=".7" position="0 .7 -2.51" opacity="0.2"></a-plane>
+
+
+
+
+    <a-entity id="links" position="0 0 -4" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="src: #grid; repeat: 10000 10000; transparent: true; opacity:0.3; "></a-entity>
+    <a-sky color="#dbdedb"></a-sky>
+    <a-entity light="color: #FFF; intensity: 1; type: ambient;"></a-entity>
+
+    <!-- photoboard -->
+     <a-plane color="#454955" rotation="0 0 0" width="7" height=".5" position="0 4.3 -2.51" opacity="0.2"></a-plane>
+
+    <a-plane id="image-360" src="#city" rotation="0 0 0" width="4" height="2.5" position="0 2.5 -2.5">
+        <a-text id="boardTitle" value="Journey to Mars" color="gray" position="-1.3 1.8 0" scale="1.5 1.5 1.5"></a-text>
+    </a-plane>
+
+    <a-plane src="#next" color="gray" rotation="0 0 0" width=".7" height=".7" position="3 2.5 -2.5" click-to-link="on: click; page: 360photoboard.html;" opacity="0.7"></a-plane>
+    <a-plane src="#prev" color="gray" rotation="0 0 0" width=".7" height=".7" position="-3 2.5 -2.5" click-to-link="on: click; page: video3.html;" opacity="0.7"></a-plane>
+
+    <a-entity laser-controls="hand: right"></a-entity>
+
+    <a-entity id="box" geometry="primitive: box; width: 0.2; height: .2; depth: .2;" position="0 0 -1.7" draw="background: #D7E8FF" textwrap="textAlign: center; x: 128; y: 128; width: 60; text: Home!; " click-to-link="on: click; page: universe.html;"></a-entity>
+
+    <!-- Camera + Cursor. -->
+   <!--  <a-entity position="0 1.5 1">
+        <a-entity camera look-controls wasd-controls>
+            <a-entity position="0 0 -2" geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.07;" material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: false">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.05 0.05 0.05" to="1 1 1" dur="150"></a-animation>
+            </a-entity>
+        </a-entity>
+
+    </a-entity> -->
+
+    <a-entity id="cursor" position="0 1.6 4" camera look-controls wasd-controls laser-controls="hand: right">
+    <a-cursor fuse="false" material="color: #fff;">
+  </a-cursor>
+</a-entity>
+</a-scene>
+
+<script src="js/custom.js"></script>
+</body>
+
+</html>

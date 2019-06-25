@@ -1,0 +1,8 @@
+ <script id="plane" type="text/html">
+                <a-entity class="link" geometry="primitive: plane; height: 1.5; width: 1.5" material="shader: flat; src: ${thumb}" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1" event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1" click-to-link="on: click; page: ${page};"></a-entity>
+                <a-entity position="1.5 1 0" text="color: #000; value: ${value}; width: 4;"></a-entity>
+                
+                <a-entity class="link" position="0 0.4 0" geometry="primitive: circle; radius: 0.3" material="src: ${icon}; transparent: true;" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1" event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1" click-to-link="on: click; page: ${page};"></a-entity>
+            </script>
+
+<a-entity template="src: #plane" data-page="photogallery.html" data-thumb="#photoboard" data-value="Photos" data-icon="#uni-photo"></a-entity>

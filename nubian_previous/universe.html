@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nubian VR</title>
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <script src="js/aframe-master.min.js"></script>
+
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/aframe-animation-component.min.js"></script>
+    <script src="js/aframe-template-component.min.js"></script>
+    <script src="js/aframe-layout-component.min.js"></script>
+    <script src="js/aframe-event-set-component.min.js"></script>
+    <script src="js/aframe-gif-shader.min.js"></script>
+    <script src="js/aframe-gif-component.min.js"></script>
+    
+    <script src="js/aframe-draw-component.min.js"></script>
+    <script src="js/aframe-textwrap-component.min.js"></script>
+
+    <script src="js/camera-position.js"></script>
+    <script src="js/link-controls.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <a-scene fog="type: linear; near:12; far:20; color: #0c192a;" raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse; fuse: false" camera-position>
+        <a-assets>
+
+            <img src="assets/white_grid_thin.png" id="grid" crossorigin="anonymous">
+            <img id="photoboard" src="img/gif/Photo Collection Board GIF-source.gif" />
+            <img id="photboard" src="img/gif/360 Photo Collection Board GIF-source.gif" />
+            <img id="vidboard" src="img/gif/360 Video Collection Board GIF-source.gif" />
+            <img id="videogif" src="img/gif/Video Collection Board GIF-source.gif" />
+
+
+            <!--            Templates   -->
+            <script id="plane" type="text/html">
+                <a-entity class="link" geometry="primitive: plane; height: 1.5; width: 2.5" material="shader: gif; src: ${thumb}" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1" event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1" click-to-link="on: click; page: ${page};"></a-entity>
+                <a-entity position="1.5 1 0" text="color: #000; value: ${value}; width: 4;"></a-entity>
+
+            </script>
+
+        </a-assets>
+
+
+        <!--        Boards-->
+        <a-entity id="links" layout="type: line; margin: 3" position="-4 2 -5">
+            <a-entity template="src: #plane" data-page="photogallery.html" data-thumb="#photoboard" data-value="Photos" ></a-entity>
+            <a-entity template="src: #plane" data-page="360photoboard.html" data-thumb="#photboard" data-value="360 Photos"></a-entity>
+            <a-entity template="src: #plane" data-page="360videoboard.html" data-thumb="#vidboard" data-value="360 Videos"></a-entity>
+            <a-entity template="src: #plane" data-page="video.html" data-thumb="#videogif" data-value="Videos" ></a-entity>
+        </a-entity>
+
+        <a-entity id="box" geometry="primitive: box; width: 0.2; height: .2; depth: .2;" position="0 3 -1.7" draw="background: #D7E8FF" textwrap="textAlign: center; x: 128; y: 128; width: 60; text: Home!; " click-to-link="on: click; page: index.html;"></a-entity>
+
+        <!--        Floor-->
+
+        <a-entity position="0 0 -4" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="src: #grid; repeat: 10000 10000; transparent: true; opacity:0.3; "></a-entity>
+        <a-sky color="#dbdedb"></a-sky>
+        <a-entity light="color: #FFF; intensity: 1; type: ambient;"></a-entity>
+
+        <a-entity laser-controls="hand: right"></a-entity>
+
+        <!-- Camera + Cursor. -->
+<!-- <a-plane id="board" position="0 0 -2" rotation="0 0 0" width="2000" height="20" color="#000" hidden="false" transparent="true" opacity="0.8"></a-plane> -->
+        <!-- <a-entity position="0 4 2">
+            <a-entity camera look-controls wasd-controls>
+                <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.07;" material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: false">
+                    <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.05 0.05 0.05" to="1 1 1" dur="150"></a-animation>
+                    <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="0.05 0.05 0.05" dur="1500"></a-animation>
+                </a-entity>
+            </a-entity>
+        </a-entity>
+ -->
+
+ <a-entity id="cursor" position="0 1.6 0" camera look-controls wasd-controls laser-controls="hand: right">
+    <a-cursor fuse="false">
+  </a-cursor>
+</a-entity>
+
+    </a-scene>
+
+
+    <script src="js/custom.js"></script>
+</body>
+</html>

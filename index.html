@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nubian VR</title>
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <script src="js/aframe-update-min.js"></script>
+
+    <script src="js/aframe-environment-component.min.js"></script>
+    <!-- <script src="js/aframe-update-animation-component.min.js"></script> -->
+    <!-- <script src="js/aframe-animation-component.min.js"></script> -->
+    <script src="js/aframe-template-component.min.js"></script>
+    <script src="js/aframe-update-layout-component.min.js"></script>
+    <script src="js/aframe-event-set-component.min.js"></script>
+    <script src="js/aframe-gif-shader.min.js"></script>
+    <script src="js/aframe-gif-component.min.js"></script>
+    
+    <script src="js/camera-position.js"></script>
+    <script src="js/link-controls.js"></script>
+    
+    <script src="js/custom.js"></script>
+
+
+</head>
+
+<body>
+
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <!-- Overlay content -->
+        <div class="overlay-content">
+            <p>
+                Welcome to Virtual Reality Education.
+            </p>
+        </div>
+
+    </div>
+    
+    <!-- The overlay -->
+    <div id="myInfo" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeInfo()">&times;</a>
+
+        <!-- Overlay content -->
+        <div class="overlay-content">
+         <h2 id="heading"></h2>
+         <p id="inf"></p>
+         <a id="exp" class="button buttonExp">Experience</a>
+     </div>
+
+ </div>
+ 
+<!--raycaster="objects: [link];" cursor--><!--fog="type: linear; near:12; far:20; color: #0c192a;"--> <!--="rayOrigin: mouse; fuse: false" camera-position-->
+<script id="plane" type="text/html">
+
+    <a-entity class="link" geometry="primitive: plane; height: 0.5; width: 0.5" material="shader: gif; src: ${thumb}; " event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1; position: " event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1"> 
+        <!-- click-to-link="on: click; page: ${page};" -->
+
+    </a-entity>
+
+    <!--a-entity class="link" position="0 -1 0" geometry="primitive: plane; height: 0.3; width: 1" material="shader: flat; src: infor;" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1" event-set__3="_event: mouseenter; scale: 1.2 1.2 1" event-set__4="_event: mouseleave; scale: 1 1 1" create-popup></a-entity>
+
+    <a-entity position="1.8 -1 0.1" text="color: #fff;  align: center; value: ${infor}; width: 4;" ></a-entity-->
+</script>
+
+<a-scene>
+    <!-- <a-entity camera look-controls></a-entity> -->
+    
+    <a-entity laser-control-use="controller" laser-controls="hand: right" laser-controls raycaster="showLine:true; objects: .link;" laser-controls line="color: orange; opacity: 0.75" oculus-go-controls visible="true"></a-entity>
+    
+    <a-camera id="main-camera" position="0 0 0">
+        <a-cursor fuse="false" material="color: red;">
+            
+        </a-cursor>
+    </a-camera>
+    
+   
+    <a-assets>
+        <!-- <img id="photoboard" src="img/gif/Photo Collection Board GIF-source.gif" />
+        <img id="photboard" src="img/gif/360 Photo Collection Board GIF-source.gif" />
+        <img id="vidboard" src="img/gif/360 Video Collection Board GIF-source.gif" />
+        <img id="videogif" src="img/gif/Video Collection Board GIF-source.gif" /> -->
+
+        
+        <!-- <img src="assets/white_grid_thin.png" id="grid" crossorigin="anonymous">
+                    gifs      
+        <img id="universe" src="img/gif/Universe GIF-source.gif">
+        <img id="climate" src="img/gif/Climate Change GIF-source.gif">
+        <img id="sustain" src="img/gif/Sustainable Development Goals GIF-source.gif">
+        <img id="quantum" src="img/gif/Quantum Physics GIF-source.gif">
+        <img id="bio" src="img/gif/Biomimicry GIF-source.gif"> -->
+        <img id="myenv" src="img/env_map3.jpg">
+
+        <!-- Main Menu gifs -->
+        <!-- <img id="start_up" src="img/img_labels/01 Start-Up.gif">
+        <img id="space_photo" src="img/img_labels/02 Space Photo Gallery.gif">
+        <img id="beginning_of_everything" src="img/img_labels/03 Begining of Everything.gif">
+        <img id="place_in_universe" src="img/img_labels/04 Place in the Universe.gif">
+        <img id="universe_scale" src="img/img_labels/05 Universe Scale.gif">
+        <img id="universe_tour" src="img/img_labels/06 360 Universe Tour.gif">
+        <img id="universe_tour2" src="img/img_labels/07 360 Universe Tour.gif">
+        <img id="inside_iss" src="img/img_labels/08 Inside ISS.gif">
+        <img id="mars" src="img/img_labels/09 On Mars.gif">
+        <audio id="onboarding_aud" src="audio/On Boarding Voice Over.mp3"></audio> -->
+
+        <img id="start_up" src="">
+        <img id="space_photo" src="img/img_labels/Learning Scene Assets.006.jpeg">
+        <img id="beginning_of_everything" src="img/img_labels/Learning Scene Assets.008.jpeg">
+        <img id="place_in_universe" src="img/img_labels/Learning Scene Assets.012.jpeg">
+        <img id="universe_scale" src="img/img_labels/Learning Scene Assets.010.jpeg">
+        <img id="universe_tour" src="img/img_labels/Learning Scene Assets.014.jpeg">
+        <img id="universe_tour2" src="img/img_labels/Learning Scene Assets.016.jpeg">
+        <img id="inside_iss" src="img/img_labels/Learning Scene Assets.018.jpeg">
+        <img id="mars" src="img/img_labels/Learning Scene Assets.020.jpeg">
+        <audio id="onboarding_aud" src="audio/On Boarding Voice Over.mp3"></audio>
+
+        <img id="floorgrid" src="img/floorGrid.jpg">
+
+
+        <!-- Photo gallery images -->
+        <!-- Images. -->
+        <img id="journey-to-mars" src="img/image/Journey to Mars.jpeg">
+        <!-- <img id="city-thumb" src="img/image/Journey to Mars.jpeg">
+
+        <img id="wolf" src="img/image/Lifecycle of Stars.jpg">
+        <img id="cubes-thumb" src="img/image/Lifecycle of Stars.jpg">
+
+        <img id="sechelt" src="img/image/Space Weather.jpeg">
+        <img id="sechelt-thumb" src="img/image/Space Weather.jpeg"> -->
+
+        <!-- Photo gallery images icons -->
+        <!-- icons -->
+        <img id="next" src="img/ico/baseline_navigate_next_white_48dp.png">
+        <img id="prev" src="img/ico/baseline_navigate_before_white_48dp.png">
+
+        <!-- 360 photo gallery page!! -->
+        <img id="360board" src="img/image/ISS Panorama.jpg" />
+        <img id="360board1" src="img/image/Mars 360 Degree.jpg" />
+
+        <!-- 360 video gallery page -->
+        <img id="preview_solar" src="img/gif/The Solar System GIF-source.gif" />
+        <img id="preview_space" src="img/gif/Space Experience GIF-source.gif" />
+
+        <!-- 360 video!!! -->
+        <video id="solarVRvid"  loop="true" src="assets/ExploreTheSolarSystem-360degreeInteractiveTour!.MP4"> </video>
+        <video id="spaceVRvid"  loop="true" src="assets/360videoSpaceExperience(VR).MP4"> </video>
+
+        <!-- Video -->
+        <video id="video-src1" src="videos/How small are we in the scale of the universe- - Alex Hofeldt - YouTube.MP4"></video>
+        <video id="video-src2" src="videos/The Beginning of Everything -- The Big Bang - YouTube.MP4"></video>
+        <video id="video-src3" src="videos/The Solar System -- our home in space - YouTube.MP4"></video>
+        <img src="assets/play.png" id="play" crossorigin="anonymous">
+        <img src="assets/pause.png" id="pause" crossorigin="anonymous">
+        <img src="assets/volume-normal.png" id="volume-normal" crossorigin="anonymous">
+        <img src="assets/volume-mute.png" id="volume-mute" crossorigin="anonymous">
+        <img src="assets/seek-back.png" id="seek-back" crossorigin="anonymous">
+
+        <img src="img/wall2.jpg" id='wall' crossorigin="anonymous"> 
+    
+    </a-assets>
+    
+
+    <!--        Boards-->
+    <a-entity id="links" layout="type: box; margin:1.3; marginColumn: -0.9; marginRow: -0.9; columns: 4; reverse:true; align: center;" position="-1.8 1.0 -2.5" panels-control="clickies" visible="false">
+    </a-entity>
+    <a-plane id="background-board" position="0.2 1.65 -2.56" scale="6 3.7 0" material = "color: #000"></a-plane>
+    <a-plane id="media-content-board" position="0.25 1.65 -2.5" scale="4 2.4 0" material = "color: #fff" visible="false"></a-plane>
+    <a-plane id="background-play-back" class="videoplaybackbtns" position="0.1 0.3 -1.1" scale="1.4 0.5 1" material = "color: #123" visible="false"></a-plane>
+
+    <!-- <a-plane  position="-5 1 0.001" rotation="0 90 0" scale="9.657 7 3.114" material="color: white" ></a-plane>
+    <a-plane position="-0.9 1 -4.0" rotation="0 0 0" scale="13 6.925 7.708" material="color: white"></a-plane>
+    <a-plane position="5 1 -0.774" rotation="180.000 90 180.000" scale="11.208 7 1.000" material="color: white"></a-plane>
+    <a-plane position="-0.9 1 4.0" rotation="0 180 0" scale="13 6.925 7.708" material="color: white"></a-plane> -->
+    <a-plane id ="floor-plane" position="-0.9 -1 -4.0" rotation="-90 0 0" scale="20 20 20" material="src: #floorgrid; repeat: 8 10"></a-plane> 
+    
+    
+    <!-- <a-entity id="universe_btn" template="src: #plane" data-page="universe.html" data-value="Universe"  data-infor="About the universe" data-thumb="#universe"></a-entity>
+
+        <a-entity template="src: #plane" data-page="#" data-value="Climate change" data-infor="About climate change" data-thumb="#climate"></a-entity>
+        <a-entity template="src: #plane" data-page="#" data-value="Sustainable Development Goals" data-infor="About Sustainable Development Goals" data-thumb="#sustain"></a-entity>
+        <a-entity template="src: #plane" data-page="#" data-value="Quantum Physics" data-infor="About Quantum Physics" data-thumb="#quantum"></a-entity>
+        <a-entity template="src: #plane" data-page="#" data-value="Biomimicry"  data-infor="About Biomimicry" data-thumb="#bio"></a-entity>
+    </a-entity>
+    <a-sky color="#dbdedb"></a-sky>
+      -->
+    <a-sky id="mysky" radius="10" src="" material="color: white" rotation="0 10 0"></a-sky>
+
+    
+
+
+    <script src="js/AVideoPlayer.js"></script>
+</a-scene>
+
+</body>
+</html>
